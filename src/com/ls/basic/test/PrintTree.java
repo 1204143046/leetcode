@@ -6,12 +6,12 @@ public class PrintTree {
 
 	public static void main(String[] args) {
 		TreeNode root = buildTree();
-		System.out.println("all");
-		allPrintTree(root);
-		System.out.println("\npre");
-		prePrintTree(root);
-		System.out.println("\npre by stack");
-		prePrintTreeByStack(root);
+//		System.out.println("all");
+//		allPrintTree(root);
+//		System.out.println("\npre");
+//		prePrintTree(root);
+//		System.out.println("\npre by stack");
+//		prePrintTreeByStack(root);
 		System.out.println("\nin");
 		inPrintTree(root);
 		System.out.println("\nin by stack");
@@ -28,7 +28,20 @@ public class PrintTree {
 	}
 
 	private static void inPrintTreeByStack(TreeNode root) {
-		Stack<TreeNode> s = new Stack<TreeNode>();
+		if(root != null){
+			Stack<TreeNode> s = new Stack<TreeNode>();
+			TreeNode head = root;
+			while(!s.isEmpty() || head != null){
+				if(head != null){
+					s.push(head);
+					head = head.left;
+				}else{
+					head = s.pop();
+					System.out.print(head.val + "\t");
+					head = head.right;
+				}
+			}
+		}
 		
 		
 	}
@@ -104,10 +117,10 @@ public class PrintTree {
 		root.right = node3;
 		node2.left = node4;
 		node2.right = node5;
-		node5.left = node6;
-		node6.left = node7;
 		node3.left = node8;
 		node3.right = node9;
+		node5.left = node6;
+		node6.left = node7;
 		node8.right = node10;
 		node10.left = node11;
 		return root;
@@ -126,4 +139,10 @@ class TreeNode{
 		this.left = left;
 		this.right = right;
 	}
+
+	@Override
+	public String toString() {
+		return "TreeNode [val=" + val + "]";
+	}
+	
 }
