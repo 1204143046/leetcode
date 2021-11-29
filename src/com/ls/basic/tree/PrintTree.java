@@ -1,4 +1,4 @@
-package com.ls.basic.test;
+package com.ls.basic.tree;
 
 import java.util.Stack;
 
@@ -6,12 +6,12 @@ public class PrintTree {
 
 	public static void main(String[] args) {
 		TreeNode root = buildTree();
-//		System.out.println("all");
-//		allPrintTree(root);
-//		System.out.println("\npre");
-//		prePrintTree(root);
-//		System.out.println("\npre by stack");
-//		prePrintTreeByStack(root);
+		System.out.println("all");
+		allPrintTree(root);
+		System.out.println("\npre");
+		prePrintTree(root);
+		System.out.println("\npre by stack");
+		prePrintTreeByStack(root);
 		System.out.println("\nin");
 		inPrintTree(root);
 		System.out.println("\nin by stack");
@@ -24,6 +24,24 @@ public class PrintTree {
 	}
 
 	private static void postPrintTreeByStack(TreeNode root) {
+		if(root != null){
+			Stack<TreeNode> s1 = new Stack<TreeNode>();
+			Stack<TreeNode> s2 = new Stack<TreeNode>();
+			s1.push(root);
+			while(!s1.isEmpty()){
+				TreeNode head = s1.pop();
+				s2.add(head);
+				if(head.left != null){
+					s1.push(head.left);
+				}
+				if(head.right != null){
+					s1.push(head.right);
+				}
+			}
+			while(!s2.isEmpty()){
+				System.out.print(s2.pop().val + "\t");
+			}
+		}
 		
 	}
 
